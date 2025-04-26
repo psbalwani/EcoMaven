@@ -28,12 +28,13 @@ export const AuthProvider = ({ children }) => {
   const register = async (userData) => {
     setLoading(true)
     try {
-      const { data } = await axios.post('/api/users/register', userData)
+      const { data } = await axios.post('/api/users', userData)
       setUser(data)
       toast.success('Registration successful')
       navigate('/')
       return data
     } catch (error) {
+      console.log('Registration error:', error) // <-- ADD THIS LINE
       const message = error.response?.data?.message || 'Registration failed'
       toast.error(message)
       throw new Error(message)
