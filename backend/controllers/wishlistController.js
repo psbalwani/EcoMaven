@@ -1,5 +1,6 @@
 import Wishlist from '../models/wishlistModel.js'
 import Product from '../models/productModel.js'
+import mongoose from 'mongoose'
 
 // @desc    Get user wishlist
 // @route   GET /api/wishlist
@@ -34,7 +35,11 @@ const addToWishlist = async (req, res) => {
   try {
     const { productId } = req.body
 
-    // Validate product exists
+    // 🔥 Validate productId first
+    if (!mongoose.Types.ObjectId.isValid(productId)) {
+      return res.status(400).json({ message: 'Invalid product ID' })
+    }
+
     const product = await Product.findById(productId)
     if (!product) {
       return res.status(404).json({ message: 'Product not found' })
@@ -43,21 +48,18 @@ const addToWishlist = async (req, res) => {
     let wishlist = await Wishlist.findOne({ user: req.user._id })
 
     if (!wishlist) {
-      // Create new wishlist if user doesn't have one
       wishlist = new Wishlist({
         user: req.user._id,
         products: [productId]
       })
     } else {
-      // Check if product is already in wishlist
       if (!wishlist.products.includes(productId)) {
         wishlist.products.push(productId)
       }
     }
 
     await wishlist.save()
-    
-    // Return populated wishlist
+
     wishlist = await Wishlist.findOne({ user: req.user._id })
       .populate({
         path: 'products',
@@ -77,20 +79,23 @@ const removeFromWishlist = async (req, res) => {
   try {
     const { productId } = req.params
 
+    // 🔥 Validate productId first
+    if (!mongoose.Types.ObjectId.isValid(productId)) {
+      return res.status(400).json({ message: 'Invalid product ID' })
+    }
+
     const wishlist = await Wishlist.findOne({ user: req.user._id })
 
     if (!wishlist) {
       return res.status(404).json({ message: 'Wishlist not found' })
     }
 
-    // Remove product from wishlist
     wishlist.products = wishlist.products.filter(
       id => id.toString() !== productId
     )
 
     await wishlist.save()
-    
-    // Return populated wishlist
+
     const updatedWishlist = await Wishlist.findOne({ user: req.user._id })
       .populate({
         path: 'products',
@@ -114,7 +119,6 @@ const clearWishlist = async (req, res) => {
       return res.status(404).json({ message: 'Wishlist not found' })
     }
 
-    // Clear all products
     wishlist.products = []
 
     await wishlist.save()

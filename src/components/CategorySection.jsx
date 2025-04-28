@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 
 const CategorySection = () => {
   const categories = [
+    
     {
       id: 'electronics',
       name: 'Electronics',

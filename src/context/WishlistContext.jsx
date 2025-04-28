@@ -77,7 +77,8 @@ export const WishlistProvider = ({ children }) => {
       
       toast.success(`${product.name} added to wishlist`)
     } catch (error) {
-      toast.error('Failed to add item to wishlist')
+      console.error('Error adding to wishlist:', error);
+      toast.error(error.response?.data?.message || 'Failed to add item to wishlist')
     } finally {
       setLoading(false)
     }

@@ -103,10 +103,10 @@ const ProductPage = () => {
   const generateMockProducts = (count) => {
     const categories = ['Electronics', 'Clothing', 'Home & Kitchen', 'Books']
     const images = [
-      'https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      'https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      'https://images.pexels.com/photos/4226733/pexels-photo-4226733.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      'https://images.pexels.com/photos/1194775/pexels-photo-1194775.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNPmD3YNOZ_-bO-19Z7tEliZheuMJkoQJ12g&s',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdAwHc5DtKvZpDiMAeNBifOzfTh4hIA6OwbA&s',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWuv6nnciQTOD8de-j0u0XSctid6I2ozE8UA&s',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-8SrFOsOtv4aBArFUoZyh50Tq-n7F0dIW-w&s'
     ]
 
     return Array.from({ length: count }, (_, i) => ({

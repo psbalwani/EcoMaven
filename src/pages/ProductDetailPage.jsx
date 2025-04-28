@@ -24,7 +24,7 @@ const ProductDetailPage = () => {
           description: 'This is a detailed description of the product with all its features and benefits.',
           price: 299.99,
           predictedPrice: 329.99,
-          image: 'https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+          image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNPmD3YNOZ_-bO-19Z7tEliZheuMJkoQJ12g&s',
           category: 'Electronics',
           brand: 'Sample Brand',
           rating: 4.5,
@@ -62,7 +62,7 @@ const ProductDetailPage = () => {
     if (isInWishlist(product._id)) {
       removeFromWishlist(product._id)
     } else {
-      addToWishlist(product)
+      addToWishlist(product._id)
     }
   }
 

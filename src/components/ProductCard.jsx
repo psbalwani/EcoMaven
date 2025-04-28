@@ -20,7 +20,7 @@ const ProductCard = ({ product, showPrediction = false }) => {
     if (inWishlist) {
       removeFromWishlist(product._id)
     } else {
-      addToWishlist(product)
+      addToWishlist(product._id)
     }
   }
   
